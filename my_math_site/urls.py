@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.urls import path
-from math_app import views 
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('eee/', views.index), # እዚህ ጋር 'calculate' የነበረውን 'index' አድርገው
+    path('', include('math_app.urls')), # ይህ መስመር ነው ዋናውን ገጽ የሚከፍተው
 ]
