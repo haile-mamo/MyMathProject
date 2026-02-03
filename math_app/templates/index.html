@@ -8,13 +8,7 @@
         input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
         button { width: 100%; padding: 12px; background: #1a73e8; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
         button:hover { background: #1557b0; }
-        .history { margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px; }
-        .history-item { 
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 0; border-bottom: 1px solid #f9f9f9; 
-        }
-        .del-btn { color: #d93025; text-decoration: none; font-size: 12px; padding: 4px 8px; border: 1px solid #d93025; border-radius: 4px; }
-        .del-btn:hover { background: #d93025; color: white; }
+        .result-box { margin-top: 20px; padding: 15px; background-color: #e8f0fe; border-radius: 8px; text-align: center; color: #1967d2; font-size: 1.2em; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -22,38 +16,23 @@
 <div class="card">
     <h2 style="text-align: center; color: #333;">ማባዣ (× 32)</h2>
     
-    <form method="POST" action="/eee/">
+    <form method="POST" action="">
         {% csrf_token %}
-        <input type="number" name="num_x" placeholder="ቁጥር ያስገቡ..." required>
-        <input type="text" name="note_text" placeholder="ማስታወሻ (አማራጭ)">
+        <input type="number" step="any" name="number" placeholder="ቁጥር አስገባ" required>
         <button type="submit">አስላ እና መዝግብ</button>
     </form>
 
-    {% if output %}
-        <div style="background: #e7f3ff; padding: 15px; margin-top: 15px; border-radius: 8px; text-align: center;">
-            <strong style="color: #1a73e8; font-size: 1.2em;">ውጤት፡ {{ output }}</strong>
+    {% if result is not None %}
+        <div class="result-box">
+            ውጤት፡ {{ result }}
         </div>
     {% endif %}
 
     <div class="history">
-        <h4 style="margin-bottom: 10px;">የስሌቶች ታሪክ</h4>
-        {% for item in all_data %}
-            <div class="history-item">
-                <div>
-                    <strong>{{ item.number }} × 32 = {{ item.result }}</strong>
-                    {% if item.note %}
-                        <br><small style="color: #666;">📝 {{ item.note }}</small>
-                    {% endif %}
-                    <br><small style="color: #999;">({{ item.created_at|date:"H:i" }})</small>
-                </div>
-                <a href="/delete/{{ item.id }}/" class="del-btn">አጥፋ</a>
-            </div>
-        {% empty %}
-            <p style="color: #999; text-align: center;">ምንም ታሪክ የለም።</p>
-        {% endfor %}
+        <h3 style="color: #666;">የስሌቶች ታሪክ</h3>
+        <p style="color: #999; font-size: 14px;">ታሪክን ለመመዝገብ በ views.py ላይ ዳታቤዝ መጨመር ይቻላል።</p>
     </div>
 </div>
-
 
 </body>
 </html>
