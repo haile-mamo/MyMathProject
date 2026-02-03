@@ -1,7 +1,7 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('math_app.urls')), # ይህ መስመር ነው ዋናውን ገጽ የሚከፍተው
+    # እዚህ ጋር ባዶ ኮቴ ('') መኖሩን አረጋግጥ
+    path('', views.home, name='home'), 
 ]
