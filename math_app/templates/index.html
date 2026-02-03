@@ -1,22 +1,93 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ሃይሌ ማባዣ - ዘመናዊ የሂሳብ ረዳት</title>
+    <style>
+        /* ይህ ክፍል ነው ቀለሙን የሚቀይረው */
+        body { 
+            font-family: 'Poppins', 'Segoe UI', sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0;
+            color: #333;
+        }
+
+        .card { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 40px; 
+            border-radius: 24px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
+            width: 90%; 
+            max-width: 400px; 
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        h2 { color: #4a148c; margin-bottom: 25px; font-size: 28px; }
+
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border: 2px solid #e0e0e0; 
+            border-radius: 12px; 
+            font-size: 18px; 
+            box-sizing: border-box; /* ሳጥኑ እንዳይበላሽ ይረዳል */
+        }
+
+        button { 
+            width: 100%; 
+            padding: 15px; 
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%); 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-size: 18px; 
+            font-weight: 600;
+        }
+
+        .result-box { 
+            margin-top: 25px; 
+            padding: 20px; 
+            background: #f3e5f5; 
+            border-left: 5px solid #764ba2;
+            border-radius: 12px; 
+        }
+
+        .result-label { font-size: 14px; color: #7b1fa2; display: block; margin-bottom: 5px; }
+        .result-value { font-size: 32px; font-weight: bold; color: #4a148c; }
+
+        .footer { margin-top: 25px; font-size: 12px; color: #888; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
 <body>
-    <div class="card">
-        <h2>ማባዣ (× 32)</h2>
-        
-        <form method="POST" action="">
-            {% csrf_token %}
-            <input type="number" step="any" name="number" placeholder="ቁጥር እዚህ ይጻፉ..." required>
-            <button type="submit">አሁኑኑ አስላ</button>
-        </form>
 
-        {% if result is not None %}
-            <div class="result-box">
-                <span class="result-label">የስሌቱ ውጤት፡</span>
-                <div class="result-value">{{ result }}</div>
-            </div>
-        {% endif %}
+<div class="card">
+    <h2>ማባዣ (× 32)</h2>
+    
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="number" step="any" name="number" placeholder="ቁጥር እዚህ ይጻፉ..." required>
+        <button type="submit">አሁኑኑ አስላ</button>
+    </form>
 
-        <div class="footer">
-            © 2026 ሃይሌ ማሞ - ሁሉም መብት የተጠበቀ ነው
+    {% if result is not None %}
+        <div class="result-box">
+            <span class="result-label">የስሌቱ ውጤት፡</span>
+            <div class="result-value">{{ result }}</div>
         </div>
+    {% endif %}
+
+    <div class="footer">
+        © 2026 ሃይሌ ማሞ - ሁሉም መብት የተጠበቀ ነው
     </div>
+</div>
+
 </body>
+</html>
